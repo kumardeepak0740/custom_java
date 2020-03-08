@@ -1,0 +1,17 @@
+---
+# tasks file for custom_java
+- name: Including Variable for CentOS
+  include_vars: CentOs.yml
+  when: ansible_os_family == 'RedHat'
+  
+- name: Including Variable for Ubuntu
+  include_vars: Ubuntu.yml
+  when: ansible_os_family == 'Debian'
+
+
+- include_tasks: CentOs-setup.yml
+  when: ansible_os_family == 'RedHat'
+
+- include_tasks: Ubuntu-setup.yml
+  when: ansible_os_family == 'Debian'
+
